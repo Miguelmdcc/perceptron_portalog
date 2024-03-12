@@ -1,4 +1,5 @@
 import numpy as np
+import random
 #perceptron base
 
 entrada = 0
@@ -6,7 +7,7 @@ opc = 0
 limiar = 0
 #definição do pesos
 #um peso para cada entrada
-w = [0.2,-0.9,0.1]
+w=[0.0,0.0,0.0]
 #definindo valor do bias
 b = 0.6
 #definindo a taxa de aprendizagem
@@ -39,33 +40,26 @@ while(opc!=7):
     print("\n Digite 5 para treinar XOR")
     print("\n Digite 6 para operar")
     print("\n Digite 7 para Sair\n ->")
+
     opc = int(input())
-    if(opc == 1):
-        target = [-1,-1,-1,1]
-        yliq = 0
+
+    if(0 < opc < 6):
+        target = [0,0,0,0]
+        w = [0,0,0]
+        w = [round(random.uniform(0,1),4),round(random.uniform(0,1),4),round(random.uniform(0,1),4)]
+        b = 0.6
+        if(opc == 1):
+            target = [-1,-1,-1,1]
+        if(opc == 2):
+            target = [-1,1,1,1]
+        if(opc == 3):
+            target = [1,1,1,-1]
+        if(opc == 4):
+            target = [1,-1,-1,-1]
+        if(opc == 5):
+            target = [-1,1,1,-1]
+        condErro = 1
         contCiclo = 0
-        y = 0
-    if(opc == 2):
-        target = [-1,1,1,1]
-        yliq = 0
-        contCiclo = 0
-        y = 0
-    if(opc == 3):
-        target = [1,1,1,-1]
-        yliq = 0
-        contCiclo = 0
-        y = 0
-    if(opc == 4):
-        target = [1,-1,-1,-1]
-        yliq = 0
-        contCiclo = 0
-        y = 0
-    if(opc == 5):
-        target = [-1,1,1,-1]
-        yliq = 0
-        contCiclo = 0
-        y = 0
-    if(1 <= opc < 6):
         while(condErro == 1):
             condErro = 0
             lin = 0
@@ -98,8 +92,6 @@ while(opc!=7):
             col+=1
         print(f"\n Bias: {b}")
     if(opc == 6):
-        yTeste = 0
-        teste = 0
         entradaTeste = np.array([[0,0]])
         entradaTeste[0][0] = int(input())
         entradaTeste[0][1] = int(input())
