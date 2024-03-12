@@ -1,4 +1,5 @@
 import numpy as np
+# pip install numpy
 import random
 #perceptron base
 
